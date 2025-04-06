@@ -9,7 +9,8 @@ export interface ExperienceItem {
   position: string;
   period: string;
   description: string;
-  technologies: string[];
+  technologies?: string[];
+  projects?: string[];
 }
 
 interface ExperienceProps {
@@ -22,7 +23,7 @@ const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold mb-10 flex items-center">
           <Briefcase className="mr-2 h-7 w-7" />
-          Professional Experience
+          Experience
         </h2>
         
         <div className="space-y-8">
@@ -43,13 +44,25 @@ const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
                   <div className="md:w-2/3 p-6">
                     <p className="mb-4">{job.description}</p>
                     
-                    <div className="flex flex-wrap gap-2">
-                      {job.technologies.map((tech, techIndex) => (
-                        <Badge key={techIndex} variant="secondary">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
+                    {job.projects && job.projects.length > 0 && (
+                      <div className="mb-4">
+                        <ul className="list-disc pl-5 space-y-2">
+                          {job.projects.map((project, pIndex) => (
+                            <li key={pIndex}>{project}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    
+                    {job.technologies && job.technologies.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {job.technologies.map((tech, techIndex) => (
+                          <Badge key={techIndex} variant="secondary">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </CardContent>

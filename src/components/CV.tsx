@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import Header from './Header';
 import About from './About';
@@ -7,107 +8,98 @@ import Skills, { SkillCategory } from './Skills';
 import Projects, { ProjectItem } from './Projects';
 import Contact from './Contact';
 import Footer from './Footer';
+import References from './References';
 
 // CV data with Dhruv's information
 const defaultData = {
-  name: "DHRUV",
+  name: "DHRUV VASAVA",
   title: "AI Student | Coding Pen Name: ND",
-  email: "dhruv.vasava@example.com",
-  phone: "+1 (555) 123-4567",
+  email: "dhruvavasava123@gmail.com",
+  phone: "+91 8758076291",
   address: "Gujarat, India",
   github: "https://github.com/dhruv-nd",
   linkedin: "https://linkedin.com/in/dhruv-vasava",
-  bio: "I'm Dhruv Vasava, a passionate AI student currently in my 4th semester at Auro University. I'm enthusiastic about machine learning, software development, and creating innovative solutions. My goal is to bridge the gap between theoretical AI concepts and practical applications through hands-on projects and continuous learning.",
+  bio: "Hi! I'm Dhruv Vasava, an AI-ML student focused on deep learning & NLP.\nI aspire to be a system designer for the future tech landscape.\nI enjoy gaming, coding, and anime, while poetry touches my heart.\nMy strengths include observation, analysis, critical thinking, and adaptability. Though I may procrastinate, I strive to complete tasks ahead of deadlines.",
   resumeUrl: "https://example.com/resume.pdf",
   experiences: [
     {
-      company: "Tech Solutions Inc.",
-      position: "AI Research Intern",
-      period: "Jan 2023 - Present",
-      description: "Working on machine learning models and data analysis for company projects. Implementing neural networks and collaborating with senior researchers on AI applications.",
-      technologies: ["Python", "TensorFlow", "PyTorch", "Data Analysis"]
-    },
-    {
-      company: "Web Innovations",
-      position: "Student Developer",
-      period: "Jun 2022 - Dec 2022",
-      description: "Developed responsive web applications while learning modern frameworks. Collaborated with a team to implement user interfaces and functionality.",
-      technologies: ["JavaScript", "React", "HTML/CSS", "Git"]
+      company: "Self-Learning",
+      position: "Projects",
+      period: "Ongoing",
+      description: "None but self learning on projects.",
+      projects: [
+        "Multiple project on C and C++ using Data Structures and Algorithms (DSA).",
+        "OOT type website, Health website, Studio website. (By using HTML,CSS, JS).",
+        "Multiple DSA program, data analysis using ML, classification models using CNN, Chatbot using RNN & NLP (by using python).",
+        "Basic project, multiple mini game type GUI application using Java.",
+        "Basic database projects using SQL & MySQL."
+      ]
     }
   ] as ExperienceItem[],
   educations: [
     {
-      institution: "Auro University",
-      degree: "Bachelor's in Artificial Intelligence",
-      period: "2021 - Present",
-      description: "Currently in 4th semester, focusing on machine learning, neural networks, and AI applications"
-    },
-    {
-      institution: "City High School",
-      degree: "Higher Secondary Education",
-      period: "2019 - 2021",
-      description: "Graduated with distinction in Computer Science and Mathematics"
+      institution: "AURO University",
+      degree: "Bachelor of Science in Information Technology with a specialization in Artificial Intelligence",
+      period: "4th sem (on going)",
+      description: ""
     }
   ] as EducationItem[],
   skillCategories: [
     {
-      category: "Programming",
+      category: "Programming & Technologies",
       skills: [
         { name: "Python", level: 85 },
-        { name: "JavaScript", level: 75 },
-        { name: "C++", level: 70 },
-        { name: "HTML/CSS", level: 80 }
-      ]
-    },
-    {
-      category: "AI & ML",
-      skills: [
-        { name: "TensorFlow", level: 75 },
-        { name: "PyTorch", level: 70 },
-        { name: "Data Analysis", level: 80 },
-        { name: "Neural Networks", level: 65 }
-      ]
-    },
-    {
-      category: "Tools & Others",
-      skills: [
-        { name: "Git", level: 80 },
-        { name: "VS Code", level: 90 },
-        { name: "Jupyter", level: 85 },
-        { name: "Problem Solving", level: 85 }
+        { name: "C/C++", level: 80 },
+        { name: "Java programming", level: 75 },
+        { name: "HTML-CSS", level: 80 },
+        { name: "Front-End", level: 75 },
+        { name: "Java script", level: 70 },
+        { name: "AI / ML", level: 80 },
+        { name: "Deep learning", level: 75 },
+        { name: "NLP", level: 70 },
+        { name: "Backend System development", level: 65 },
+        { name: "SQL & MySQL", level: 75 }
       ]
     }
   ] as SkillCategory[],
   projects: [
     {
-      title: "AI Image Recognition",
-      description: "A machine learning project for recognizing and classifying images using neural networks.",
-      technologies: ["Python", "TensorFlow", "OpenCV", "NumPy"],
-      projectUrl: "https://github.com/dhruv-nd/ai-image-recognition",
+      title: "Data Structures and Algorithms Projects",
+      description: "Multiple projects using C and C++ implementing various data structures and algorithms.",
+      technologies: ["C", "C++", "DSA"],
+      projectUrl: "https://github.com/dhruv-nd/dsa-projects",
       imageUrl: "https://placekitten.com/600/340" // Placeholder image
     },
     {
-      title: "Student Portal",
-      description: "A web application for students to manage courses, assignments, and university resources.",
-      technologies: ["React", "Node.js", "MongoDB", "Express"],
-      projectUrl: "https://github.com/dhruv-nd/student-portal",
+      title: "Web Development Projects",
+      description: "OOT type website, Health website, and Studio website using front-end technologies.",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      projectUrl: "https://github.com/dhruv-nd/web-projects",
       imageUrl: "https://placekitten.com/601/340" // Placeholder image
     },
     {
-      title: "Smart Home Automation",
-      description: "IoT project for automating home devices with AI-based decision making.",
-      technologies: ["Python", "Raspberry Pi", "MQTT", "Machine Learning"],
-      projectUrl: "https://github.com/dhruv-nd/smart-home",
+      title: "Machine Learning Applications",
+      description: "Data analysis, classification models using CNN, and chatbot using RNN & NLP.",
+      technologies: ["Python", "TensorFlow", "NLP", "Machine Learning"],
+      projectUrl: "https://github.com/dhruv-nd/ml-projects",
       imageUrl: "https://placekitten.com/602/340" // Placeholder image
     },
     {
-      title: "Personal Portfolio",
-      description: "A responsive portfolio website to showcase projects and skills.",
-      technologies: ["React", "Tailwind CSS", "JavaScript", "HTML5"],
-      projectUrl: "https://github.com/dhruv-nd/portfolio",
+      title: "Java GUI Applications",
+      description: "Multiple mini-game type GUI applications developed in Java.",
+      technologies: ["Java", "Swing", "AWT"],
+      projectUrl: "https://github.com/dhruv-nd/java-projects",
       imageUrl: "https://placekitten.com/603/340" // Placeholder image
     }
   ] as ProjectItem[],
+  references: [
+    {
+      name: "Dhaval Thaker",
+      position: "Faculty of school of IT, auro university",
+      contact: "dhaval.thaker@aurouniversity.edu.in",
+      relationship: "Social"
+    }
+  ],
   githubRepoUrl: "https://github.com/dhruv-nd/cv-platform"
 };
 
@@ -145,6 +137,8 @@ const CV: React.FC<CVProps> = ({ data = defaultData }) => {
       <Skills skillCategories={data.skillCategories} />
       
       <Projects projects={data.projects} />
+      
+      <References references={data.references} />
       
       <Contact 
         ref={contactRef}
