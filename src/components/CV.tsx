@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import Header from './Header';
 import About from './About';
@@ -9,113 +8,107 @@ import Projects, { ProjectItem } from './Projects';
 import Contact from './Contact';
 import Footer from './Footer';
 
-// Default CV data - replace with your own
+// CV data with Dhruv's information
 const defaultData = {
-  name: "John Doe",
-  title: "Senior Software Engineer",
-  email: "johndoe@example.com",
+  name: "DHRUV",
+  title: "AI Student | Coding Pen Name: ND",
+  email: "dhruv.vasava@example.com",
   phone: "+1 (555) 123-4567",
-  address: "San Francisco, CA",
-  github: "https://github.com/yourusername",
-  linkedin: "https://linkedin.com/in/yourusername",
-  bio: "I'm a passionate software engineer with over 8 years of experience building web applications. I specialize in frontend development with React and TypeScript, while also having strong backend skills with Node.js and Python. I enjoy solving complex problems and creating intuitive, efficient user interfaces.",
+  address: "Gujarat, India",
+  github: "https://github.com/dhruv-nd",
+  linkedin: "https://linkedin.com/in/dhruv-vasava",
+  bio: "I'm Dhruv Vasava, a passionate AI student currently in my 4th semester at Auro University. I'm enthusiastic about machine learning, software development, and creating innovative solutions. My goal is to bridge the gap between theoretical AI concepts and practical applications through hands-on projects and continuous learning.",
   resumeUrl: "https://example.com/resume.pdf",
   experiences: [
     {
       company: "Tech Solutions Inc.",
-      position: "Senior Frontend Developer",
-      period: "Jan 2020 - Present",
-      description: "Lead developer for the company's flagship product, implementing new features and improving performance. Mentored junior developers and established coding standards and best practices.",
-      technologies: ["React", "TypeScript", "Redux", "Tailwind CSS"]
+      position: "AI Research Intern",
+      period: "Jan 2023 - Present",
+      description: "Working on machine learning models and data analysis for company projects. Implementing neural networks and collaborating with senior researchers on AI applications.",
+      technologies: ["Python", "TensorFlow", "PyTorch", "Data Analysis"]
     },
     {
       company: "Web Innovations",
-      position: "Frontend Developer",
-      period: "Mar 2018 - Dec 2019",
-      description: "Developed responsive web applications with modern JavaScript frameworks. Collaborated with UX designers to implement pixel-perfect interfaces.",
-      technologies: ["JavaScript", "Vue.js", "SCSS", "Webpack"]
-    },
-    {
-      company: "Digital Agency",
-      position: "Junior Web Developer",
-      period: "Jun 2016 - Feb 2018",
-      description: "Assisted in building client websites and web applications. Worked on both frontend and backend tasks as needed.",
-      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"]
+      position: "Student Developer",
+      period: "Jun 2022 - Dec 2022",
+      description: "Developed responsive web applications while learning modern frameworks. Collaborated with a team to implement user interfaces and functionality.",
+      technologies: ["JavaScript", "React", "HTML/CSS", "Git"]
     }
   ] as ExperienceItem[],
   educations: [
     {
-      institution: "University of Technology",
-      degree: "Master of Computer Science",
-      period: "2014 - 2016"
+      institution: "Auro University",
+      degree: "Bachelor's in Artificial Intelligence",
+      period: "2021 - Present",
+      description: "Currently in 4th semester, focusing on machine learning, neural networks, and AI applications"
     },
     {
-      institution: "State University",
-      degree: "Bachelor of Science in Information Technology",
-      period: "2010 - 2014",
-      description: "Graduated with honors, GPA 3.8/4.0"
+      institution: "City High School",
+      degree: "Higher Secondary Education",
+      period: "2019 - 2021",
+      description: "Graduated with distinction in Computer Science and Mathematics"
     }
   ] as EducationItem[],
   skillCategories: [
     {
-      category: "Frontend",
+      category: "Programming",
       skills: [
-        { name: "React", level: 90 },
-        { name: "TypeScript", level: 85 },
-        { name: "HTML/CSS", level: 95 },
-        { name: "JavaScript", level: 90 }
+        { name: "Python", level: 85 },
+        { name: "JavaScript", level: 75 },
+        { name: "C++", level: 70 },
+        { name: "HTML/CSS", level: 80 }
       ]
     },
     {
-      category: "Backend",
+      category: "AI & ML",
       skills: [
-        { name: "Node.js", level: 80 },
-        { name: "Python", level: 70 },
-        { name: "SQL", level: 75 },
-        { name: "REST API Design", level: 85 }
+        { name: "TensorFlow", level: 75 },
+        { name: "PyTorch", level: 70 },
+        { name: "Data Analysis", level: 80 },
+        { name: "Neural Networks", level: 65 }
       ]
     },
     {
       category: "Tools & Others",
       skills: [
-        { name: "Git", level: 85 },
-        { name: "Docker", level: 70 },
-        { name: "AWS", level: 65 },
-        { name: "Agile/Scrum", level: 80 }
+        { name: "Git", level: 80 },
+        { name: "VS Code", level: 90 },
+        { name: "Jupyter", level: 85 },
+        { name: "Problem Solving", level: 85 }
       ]
     }
   ] as SkillCategory[],
   projects: [
     {
-      title: "E-commerce Platform",
-      description: "A full-featured online store with payment integration, user accounts, and an admin dashboard.",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      projectUrl: "https://github.com/yourusername/ecommerce",
+      title: "AI Image Recognition",
+      description: "A machine learning project for recognizing and classifying images using neural networks.",
+      technologies: ["Python", "TensorFlow", "OpenCV", "NumPy"],
+      projectUrl: "https://github.com/dhruv-nd/ai-image-recognition",
       imageUrl: "https://placekitten.com/600/340" // Placeholder image
     },
     {
-      title: "Task Management App",
-      description: "A productivity application for managing tasks, projects, and team collaboration.",
-      technologies: ["Vue.js", "Firebase", "Tailwind CSS"],
-      projectUrl: "https://github.com/yourusername/task-app",
+      title: "Student Portal",
+      description: "A web application for students to manage courses, assignments, and university resources.",
+      technologies: ["React", "Node.js", "MongoDB", "Express"],
+      projectUrl: "https://github.com/dhruv-nd/student-portal",
       imageUrl: "https://placekitten.com/601/340" // Placeholder image
     },
     {
-      title: "Weather Dashboard",
-      description: "Real-time weather information display with location search and forecast visualization.",
-      technologies: ["JavaScript", "Chart.js", "Weather API"],
-      projectUrl: "https://github.com/yourusername/weather-app",
+      title: "Smart Home Automation",
+      description: "IoT project for automating home devices with AI-based decision making.",
+      technologies: ["Python", "Raspberry Pi", "MQTT", "Machine Learning"],
+      projectUrl: "https://github.com/dhruv-nd/smart-home",
       imageUrl: "https://placekitten.com/602/340" // Placeholder image
     },
     {
-      title: "Portfolio Website",
-      description: "A personal portfolio website to showcase projects and skills.",
-      technologies: ["React", "Three.js", "GSAP", "Tailwind"],
-      projectUrl: "https://github.com/yourusername/portfolio",
+      title: "Personal Portfolio",
+      description: "A responsive portfolio website to showcase projects and skills.",
+      technologies: ["React", "Tailwind CSS", "JavaScript", "HTML5"],
+      projectUrl: "https://github.com/dhruv-nd/portfolio",
       imageUrl: "https://placekitten.com/603/340" // Placeholder image
     }
   ] as ProjectItem[],
-  githubRepoUrl: "https://github.com/yourusername/cv-platform"
+  githubRepoUrl: "https://github.com/dhruv-nd/cv-platform"
 };
 
 interface CVProps {
