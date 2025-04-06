@@ -1,16 +1,84 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, forwardRef, RefObject } from 'react';
 import { Helmet } from 'react-helmet';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { ArrowDown, Book, BookUser, Briefcase, FileText, Github, Link, Linkedin } from 'lucide-react';
 
 // START OF ALL-IN-ONE CV APP
 
+// Type definitions
+interface ExperienceItem {
+  company: string;
+  position: string;
+  period: string;
+  description: string;
+  technologies?: string[];
+  projects?: string[];
+}
+
+interface EducationItem {
+  institution: string;
+  degree: string;
+  period: string;
+  description?: string;
+}
+
+interface SkillCategory {
+  category: string;
+  skills: Array<{
+    name: string;
+    level: number; // 0-100
+  }>;
+}
+
+interface ProjectItem {
+  title: string;
+  description: string;
+  technologies: string[];
+  projectUrl?: string;
+  imageUrl?: string;
+}
+
+interface Reference {
+  name: string;
+  position: string;
+  contact: string;
+  relationship: string;
+}
+
+interface ContactProps {
+  email: string;
+  phone?: string;
+  address?: string;
+  message?: string;
+}
+
+interface HeaderProps {
+  name: string;
+  title: string;
+  email: string;
+  github?: string;
+  linkedin?: string;
+  scrollToContact: () => void;
+}
+
+interface AboutProps {
+  bio: string;
+  resumeUrl?: string;
+}
+
+interface ReferencesProps {
+  references: Reference[];
+}
+
+interface FooterProps {
+  githubRepoUrl?: string;
+}
+
 // Header Component
-const Header = ({
+const Header: React.FC<HeaderProps> = ({
   name,
   title,
   email,
@@ -70,7 +138,7 @@ const Header = ({
 };
 
 // About Component
-const About = ({ bio, resumeUrl }) => {
+const About: React.FC<AboutProps> = ({ bio, resumeUrl }) => {
   // Split bio by newline characters to render each paragraph separately
   const bioParagraphs = bio.split('\n');
 
@@ -112,7 +180,7 @@ const About = ({ bio, resumeUrl }) => {
 };
 
 // Experience Component
-const Experience = ({ experiences }) => {
+const Experience: React.FC<{experiences: ExperienceItem[]}> = ({ experiences }) => {
   return (
     <section id="experience" className="py-16 px-6 md:px-10 animate-fade-in section-delay-2">
       <div className="max-w-5xl mx-auto">
@@ -170,7 +238,7 @@ const Experience = ({ experiences }) => {
 };
 
 // Education Component
-const Education = ({ educations }) => {
+const Education: React.FC<{educations: EducationItem[]}> = ({ educations }) => {
   return (
     <section id="education" className="py-16 px-6 md:px-10 bg-secondary/50 animate-fade-in section-delay-3">
       <div className="max-w-5xl mx-auto">
@@ -203,7 +271,7 @@ const Education = ({ educations }) => {
 };
 
 // Skills Component
-const Skills = ({ skillCategories }) => {
+const Skills: React.FC<{skillCategories: SkillCategory[]}> = ({ skillCategories }) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const sectionRef = React.useRef(null);
 
@@ -273,7 +341,7 @@ const Skills = ({ skillCategories }) => {
 };
 
 // Projects Component
-const Projects = ({ projects }) => {
+const Projects: React.FC<{projects: ProjectItem[]}> = ({ projects }) => {
   return (
     <section id="projects" className="py-16 px-6 md:px-10 bg-secondary/50 animate-fade-in section-delay-5">
       <div className="max-w-5xl mx-auto">
@@ -332,7 +400,7 @@ const Projects = ({ projects }) => {
 };
 
 // References Component
-const References = ({ references }) => {
+const References: React.FC<ReferencesProps> = ({ references }) => {
   if (!references || references.length === 0) {
     return null;
   }
@@ -372,72 +440,74 @@ const References = ({ references }) => {
   );
 };
 
-// Contact Component
-const Contact = React.forwardRef(({ email, phone, address, message }, ref) => {
-  return (
-    <section 
-      id="contact" 
-      ref={ref}
-      className="py-16 px-6 md:px-10 animate-fade-in"
-    >
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold mb-10">Contact Me</h2>
-        
-        <Card className="border-none shadow-md">
-          <CardContent className="p-6">
-            <div className="max-w-md mx-auto">
-              {message && (
-                <p className="mb-6 text-center">{message}</p>
-              )}
-              
-              <div className="space-y-4">
-                <div className="flex flex-col items-center p-4 bg-secondary rounded-lg">
-                  <span className="font-medium">Email</span>
-                  <a 
-                    href={`mailto:${email}`} 
-                    className="text-primary hover:text-primary/80 transition-colors"
-                  >
-                    {email}
-                  </a>
-                </div>
+// Contact Component - Fixed the ref type
+const Contact = forwardRef<HTMLElement, ContactProps>(
+  ({ email, phone, address, message }, ref) => {
+    return (
+      <section 
+        id="contact" 
+        ref={ref}
+        className="py-16 px-6 md:px-10 animate-fade-in"
+      >
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-bold mb-10">Contact Me</h2>
+          
+          <Card className="border-none shadow-md">
+            <CardContent className="p-6">
+              <div className="max-w-md mx-auto">
+                {message && (
+                  <p className="mb-6 text-center">{message}</p>
+                )}
                 
-                {phone && (
+                <div className="space-y-4">
                   <div className="flex flex-col items-center p-4 bg-secondary rounded-lg">
-                    <span className="font-medium">Phone</span>
+                    <span className="font-medium">Email</span>
                     <a 
-                      href={`tel:${phone}`} 
+                      href={`mailto:${email}`} 
                       className="text-primary hover:text-primary/80 transition-colors"
                     >
-                      {phone}
+                      {email}
                     </a>
                   </div>
-                )}
-                
-                {address && (
-                  <div className="flex flex-col items-center p-4 bg-secondary rounded-lg">
-                    <span className="font-medium">Location</span>
-                    <span>{address}</span>
+                  
+                  {phone && (
+                    <div className="flex flex-col items-center p-4 bg-secondary rounded-lg">
+                      <span className="font-medium">Phone</span>
+                      <a 
+                        href={`tel:${phone}`} 
+                        className="text-primary hover:text-primary/80 transition-colors"
+                      >
+                        {phone}
+                      </a>
+                    </div>
+                  )}
+                  
+                  {address && (
+                    <div className="flex flex-col items-center p-4 bg-secondary rounded-lg">
+                      <span className="font-medium">Location</span>
+                      <span>{address}</span>
+                    </div>
+                  )}
+                  
+                  <div className="pt-3 flex justify-center">
+                    <a href={`mailto:${email}`}>
+                      <Button>Send Email</Button>
+                    </a>
                   </div>
-                )}
-                
-                <div className="pt-3 flex justify-center">
-                  <a href={`mailto:${email}`}>
-                    <Button>Send Email</Button>
-                  </a>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-  );
-});
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    );
+  }
+);
 
 Contact.displayName = 'Contact';
 
 // Footer Component
-const Footer = ({ githubRepoUrl }) => {
+const Footer: React.FC<FooterProps> = ({ githubRepoUrl }) => {
   const year = new Date().getFullYear();
   
   return (
@@ -472,7 +542,7 @@ const Footer = ({ githubRepoUrl }) => {
 };
 
 // GithubHostingInfo Component
-const GithubHostingInfo = () => {
+const GithubHostingInfo: React.FC = () => {
   return (
     <section className="py-8 px-6">
       <div className="max-w-5xl mx-auto">
@@ -544,8 +614,8 @@ const GithubHostingInfo = () => {
 };
 
 // Main CV Component with all data
-const CV = () => {
-  const contactRef = useRef(null);
+const CV: React.FC = () => {
+  const contactRef = useRef<HTMLElement>(null);
   
   const scrollToContact = () => {
     contactRef.current?.scrollIntoView({ behavior: 'smooth' });
