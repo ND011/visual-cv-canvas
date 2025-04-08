@@ -1,14 +1,21 @@
 
 import React, { useRef } from 'react';
-import Header from './Header';
-import About from './About';
-import Experience, { ExperienceItem } from './Experience';
-import Education, { EducationItem } from './Education';
-import Skills, { SkillCategory } from './Skills';
-import Projects, { ProjectItem } from './Projects';
-import Contact from './Contact';
-import Footer from './Footer';
-import References from './References';
+import {
+  Header,
+  About,
+  Experience,
+  Education,
+  Skills,
+  Projects,
+  References,
+  Contact,
+  Footer,
+  ExperienceItem,
+  EducationItem,
+  SkillCategory,
+  ProjectItem,
+  Reference
+} from './AllInOne';
 
 // CV data with Dhruv's information
 const defaultData = {
@@ -105,7 +112,7 @@ const defaultData = {
       contact: "bhanu.l100164@culko.in / Ph# 9336922458",
       relationship: "Academic"
     }
-  ],
+  ] as Reference[],
   githubRepoUrl: "https://github.com/dhruv-nd/cv-platform"
 };
 
