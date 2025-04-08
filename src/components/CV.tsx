@@ -96,8 +96,14 @@ const defaultData = {
     {
       name: "Dhaval Thaker",
       position: "Faculty of school of IT, auro university",
-      contact: "dhaval.thaker@aurouniversity.edu.in",
+      contact: "+90 9275191688",
       relationship: "Social"
+    },
+    {
+      name: "Dr. Bhanu Pratap Singh",
+      position: "Associate Professor, Chandigarh University, Lucknow Campus",
+      contact: "bhanu.l100164@culko.in / Ph# 9336922458",
+      relationship: "Academic"
     }
   ],
   githubRepoUrl: "https://github.com/dhruv-nd/cv-platform"
